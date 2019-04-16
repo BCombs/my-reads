@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Bookcase extends Component {
-  
-  render() {
-    
-    return (
+const Bookcase = (props) => {
+   return (
       <div className="list-books-content">
-      	{this.props.children}
+      	{props.children}
       </div>
     );
-  }
 }
 
 export default Bookcase;

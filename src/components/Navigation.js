@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Navigation extends Component {
-  
-  render() {
-    
-    return (
+const Navigation = () => {
+  return (
       <div className="list-books-title">
       	<h1>MyReads</h1>
       </div>
     );
-  }
 }
 
 export default Navigation;
