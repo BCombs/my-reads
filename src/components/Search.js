@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { search } from '../BooksAPI';
+import { getAll, search } from '../BooksAPI';
 import Book from './Book';
 
 class Search extends Component {
@@ -9,10 +9,15 @@ class Search extends Component {
 
     this.state = {
       query: '',
+      shelvedBooks: [],
       foundBooks: []
     };
 
     this.updateQuery = this.updateQuery.bind(this);
+  }
+
+  componentDidMount() {
+    getAll().then(books => this.setState({ shelvedBooks: books }));
   }
 
   updateQuery(event) {
@@ -28,6 +33,19 @@ class Search extends Component {
           if (books.length === 0) {
             this.setState({ foundBooks: [] });
           } else {
+            books.forEach(book => {
+              // Check if the book is in shelvedBooks
+              let bookInShelf = this.state.shelvedBooks.filter(
+                shelvedBook => shelvedBook.id === book.id
+              );
+              if (bookInShelf[0]) {
+                // It was already on a shelf, add the shelf to the book
+                book.shelf = bookInShelf[0].shelf;
+              } else {
+                // It wasn't on a shelf, select none
+                book.shelf = 'none';
+              }
+            });
             this.setState({ foundBooks: books });
           }
         } else {
