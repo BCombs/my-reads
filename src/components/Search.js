@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { search, update } from '../BooksAPI';
+import { search } from '../BooksAPI';
 import Book from './Book';
 
 class Search extends Component {
@@ -8,31 +8,33 @@ class Search extends Component {
     super(props);
 
     this.state = {
-      searchValue: '',
+      query: '',
       foundBooks: []
     };
 
-    this.updateSearch = this.updateSearch.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
   }
 
-  async updateSearch(event) {
-    this.setState({ searchValue: event.target.value });
+  updateQuery(event) {
+    this.setState({ query: event.target.value });
     // The search bar is empty. Don't show results
-    if (event.target.value == '') this.setState({ foundBooks: [] });
-
-    const books = await search(event.target.value, 20).then(books => {
-      if (Array.isArray(books)) {
-        // books is an array, if the length is 0 set foundBooks to an empty array, else, set foundBooks to the books array
-        if (books.length == 0) {
-          this.setState({ foundBooks: [] });
+    if (event.target.value === '') {
+      this.setState({ foundBooks: [] });
+    } else {
+      search(event.target.value, 20).then(books => {
+        if (Array.isArray(books)) {
+          // books is an array, if the length is 0 set foundBooks to an empty array, else, set foundBooks to the books array
+          if (books.length === 0) {
+            this.setState({ foundBooks: [] });
+          } else {
+            this.setState({ foundBooks: books });
+          }
         } else {
-          this.setState({ foundBooks: books });
+          // Error object was returned or something else went wrong
+          this.setState({ foundBooks: [] });
         }
-      } else {
-        // Error object was returned or something else went wrong
-        this.setState({ foundBooks: [] });
-      }
-    });
+      });
+    }
   }
 
   render() {
@@ -65,7 +67,7 @@ class Search extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              onChange={this.updateSearch}
+              onChange={this.updateQuery}
             />
           </div>
         </div>
