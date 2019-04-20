@@ -61,16 +61,20 @@ class BooksApp extends React.Component {
             <Bookcase>
               {/* Shelves */}
               <Shelf
-                name="Currently Reading"
+                shelfName="Currently Reading"
                 books={currentlyReading}
                 updateBooks={this.updateBooks}
               />
               <Shelf
-                name="Want to Read"
+                shelfName="Want to Read"
                 books={wantToRead}
                 updateBooks={this.updateBooks}
               />
-              <Shelf name="Read" books={read} updateBooks={this.updateBooks} />
+              <Shelf
+                shelfName="Read"
+                books={read}
+                updateBooks={this.updateBooks}
+              />
             </Bookcase>
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>
