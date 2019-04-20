@@ -55,7 +55,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <Search onBackClick={closeSearchPage} />
+          <Search onBackClick={closeSearchPage} updateBooks={updateBooks} />
         ) : (
           <div className="list-books">
             <Navigation />

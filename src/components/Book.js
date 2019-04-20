@@ -24,9 +24,20 @@ class Book extends Component {
 
   render() {
     const book = this.props.book;
-    const smallThumbnail = book.imageLinks.smallThumbnail;
+    console.log(book);
+    let smallThumbnail;
+    if (book.imageLinks) {
+      smallThumbnail = book.imageLinks.smallThumbnail;
+    } else {
+      smallThumbnail = '';
+    }
     const { title } = book;
-    const authors = book.authors.join(', ');
+    let authors;
+    if (book.authors) {
+      authors = book.authors.join(', ');
+    } else {
+      authors = '';
+    }
 
     return (
       <div className="book">
