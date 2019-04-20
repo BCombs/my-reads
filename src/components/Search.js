@@ -37,15 +37,12 @@ class Search extends Component {
 
   render() {
     const { onBackClick, updateBooks } = this.props;
-    const onShelfChange = (book, shelf) => {
-      updateBooks(book, shelf);
-    };
     const { foundBooks } = this.state;
 
     const booksInShelf = foundBooks.map((currentBook, key) => {
       return (
         <li key={currentBook.id}>
-          <Book book={currentBook} onShelfChange={onShelfChange} />
+          <Book book={currentBook} onShelfChange={updateBooks} />
         </li>
       );
     });
