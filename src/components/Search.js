@@ -17,11 +17,21 @@ class Search extends Component {
 
   async updateSearch(event) {
     this.setState({ searchValue: event.target.value });
-    const books = await search(this.state.searchValue, 20);
-    if (typeof books !== 'undefined') {
-      this.setState({ foundBooks: books });
-      console.log(this.state.foundBooks);
-    }
+    // The search bar is empty. Don't show results
+    if (event.target.value == '') this.setState({ foundBooks: [] });
+
+    const books = await search(event.target.value, 20).then(books => {
+      if (Array.isArray(books)) {
+        if (books.length == 0) {
+          this.setState({ foundBooks: [] });
+        } else {
+          this.setState({ foundBooks: books });
+          console.log(this.state.foundBooks);
+        }
+      } else {
+        this.setState({ foundBooks: [] });
+      }
+    });
   }
 
   render() {

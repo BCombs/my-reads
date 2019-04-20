@@ -24,7 +24,6 @@ class Book extends Component {
 
   render() {
     const book = this.props.book;
-    console.log(book);
     let smallThumbnail;
     if (book.imageLinks) {
       smallThumbnail = book.imageLinks.smallThumbnail;
