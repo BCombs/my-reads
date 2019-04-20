@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 // import * as BooksAPI from './BooksAPI'
-import './App.css'
+import './App.css';
 import Navigation from './components/Navigation';
 import Bookcase from './components/Bookcase';
 import Shelf from './components/Shelf';
@@ -17,13 +17,13 @@ class BooksApp extends React.Component {
      */
     showSearchPage: false,
     allBooks: []
-  }
+  };
 
   async componentDidMount() {
     try {
       const books = await getAll();
-	  this.setState({allBooks: books});
-  	} catch(err) {
+      this.setState({ allBooks: books });
+    } catch (err) {
       console.log(err);
     }
   }
@@ -32,46 +32,57 @@ class BooksApp extends React.Component {
     try {
       await update(book, shelf);
       const books = await getAll();
-	  this.setState({allBooks: books});
-    }catch(err) {
+      this.setState({ allBooks: books });
+    } catch (err) {
       console.log(err);
     }
   }
 
   closeSearchPage() {
     this.setState({ showSearchPage: false });
- }
+  }
 
   render() {
     const { allBooks } = this.state;
-	const currentlyReading = allBooks.filter(book => (book.shelf === 'currentlyReading'));
-	const wantToRead = allBooks.filter(book => (book.shelf === 'wantToRead'));
-	const read = allBooks.filter(book => (book.shelf === 'read'));
+    const currentlyReading = allBooks.filter(
+      book => book.shelf === 'currentlyReading'
+    );
+    const wantToRead = allBooks.filter(book => book.shelf === 'wantToRead');
+    const read = allBooks.filter(book => book.shelf === 'read');
     const updateBooks = this.updateBooks.bind(this);
-	const closeSearchPage = this.closeSearchPage.bind(this);
+    const closeSearchPage = this.closeSearchPage.bind(this);
 
     return (
       <div className="app">
         {this.state.showSearchPage ? (
-          <Search onBackClick={closeSearchPage}/>
+          <Search onBackClick={closeSearchPage} />
         ) : (
           <div className="list-books">
-          
-          <Navigation />
-          <Bookcase>
+            <Navigation />
+            <Bookcase>
               {/* Shelves */}
-              <Shelf name="Currently Reading" books={currentlyReading} updateBooks={updateBooks}/>
-              <Shelf name="Want to Read" books={wantToRead} updateBooks={updateBooks}/>
-              <Shelf name="Read" books={read} updateBooks={updateBooks}/>
-		 </Bookcase>
-         <div className="open-search">
-           <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-         </div>
-         </div>
+              <Shelf
+                name="Currently Reading"
+                books={currentlyReading}
+                updateBooks={updateBooks}
+              />
+              <Shelf
+                name="Want to Read"
+                books={wantToRead}
+                updateBooks={updateBooks}
+              />
+              <Shelf name="Read" books={read} updateBooks={updateBooks} />
+            </Bookcase>
+            <div className="open-search">
+              <a onClick={() => this.setState({ showSearchPage: true })}>
+                Add a book
+              </a>
+            </div>
+          </div>
         )}
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;
