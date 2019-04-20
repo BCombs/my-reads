@@ -16,12 +16,13 @@ class Search extends Component {
   }
 
   updateQuery(event) {
-    this.setState({ query: event.target.value });
+    const query = event.target.value;
+    this.setState({ query: query });
     // The search bar is empty. Don't show results
-    if (event.target.value === '') {
+    if (query === '') {
       this.setState({ foundBooks: [] });
     } else {
-      search(event.target.value, 20).then(books => {
+      search(query, 20).then(books => {
         if (Array.isArray(books)) {
           // books is an array, if the length is 0 set foundBooks to an empty array, else, set foundBooks to the books array
           if (books.length === 0) {
@@ -30,7 +31,7 @@ class Search extends Component {
             this.setState({ foundBooks: books });
           }
         } else {
-          // Error object was returned or something else went wrong
+          // Error
           this.setState({ foundBooks: [] });
         }
       });
