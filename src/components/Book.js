@@ -24,11 +24,11 @@ class Book extends Component {
 
   render() {
     const book = this.props.book;
-    let smallThumbnail;
+    let thumbnail;
     if (book.imageLinks) {
-      smallThumbnail = book.imageLinks.smallThumbnail;
+      thumbnail = book.imageLinks.thumbnail;
     } else {
-      smallThumbnail = '';
+      thumbnail = '';
     }
     const { title } = book;
     let authors;
@@ -46,7 +46,7 @@ class Book extends Component {
             style={{
               width: 128,
               height: 193,
-              backgroundImage: `url(${smallThumbnail})`
+              backgroundImage: `url(${thumbnail})`
             }}
           >
             {' '}
