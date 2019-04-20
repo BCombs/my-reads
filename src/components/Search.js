@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { getAll, search } from '../BooksAPI';
 import Book from './Book';
@@ -71,9 +72,9 @@ class Search extends Component {
     return (
       <div className="search-books">
         <div className="search-books-bar">
-          <a className="close-search" onClick={() => onBackClick()}>
+          <Link className="close-search" to="/">
             Close
-          </a>
+          </Link>
           <div className="search-books-input-wrapper">
             {/*
                   NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -101,6 +102,5 @@ class Search extends Component {
 export default Search;
 
 Search.propTypes = {
-  onBackClick: PropTypes.func.isRequired,
   updateBooks: PropTypes.func.isRequired
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, Route } from 'react-router-dom';
 import './App.css';
 import Navigation from './components/Navigation';
 import Bookcase from './components/Bookcase';
@@ -10,7 +11,6 @@ class BooksApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showSearchPage: false,
       allBooks: []
     };
 
@@ -50,39 +50,45 @@ class BooksApp extends React.Component {
 
     return (
       <div className="app">
-        {this.state.showSearchPage ? (
-          <Search
-            onBackClick={this.closeSearchPage}
-            updateBooks={this.updateBooks}
-          />
-        ) : (
-          <div className="list-books">
-            <Navigation />
-            <Bookcase>
-              {/* Shelves */}
-              <Shelf
-                shelfName="Currently Reading"
-                books={currentlyReading}
-                updateBooks={this.updateBooks}
-              />
-              <Shelf
-                shelfName="Want to Read"
-                books={wantToRead}
-                updateBooks={this.updateBooks}
-              />
-              <Shelf
-                shelfName="Read"
-                books={read}
-                updateBooks={this.updateBooks}
-              />
-            </Bookcase>
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>
-                Add a book
-              </a>
+        <Route
+          exact
+          path="/"
+          render={() => (
+            <div className="list-books">
+              <Navigation />
+              <Bookcase>
+                {/* Shelves */}
+                <Shelf
+                  shelfName="Currently Reading"
+                  books={currentlyReading}
+                  updateBooks={this.updateBooks}
+                />
+                <Shelf
+                  shelfName="Want to Read"
+                  books={wantToRead}
+                  updateBooks={this.updateBooks}
+                />
+                <Shelf
+                  shelfName="Read"
+                  books={read}
+                  updateBooks={this.updateBooks}
+                />
+              </Bookcase>
+              <div className="open-search">
+                <Link to="/search">Add a book</Link>
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        />
+        <Route
+          path="/search"
+          render={() => (
+            <Search
+              onBackClick={this.closeSearchPage}
+              updateBooks={this.updateBooks}
+            />
+          )}
+        />
       </div>
     );
   }
