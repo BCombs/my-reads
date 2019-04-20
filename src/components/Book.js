@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 class Book extends Component {
   
+  componentDidMount() {
+    const node = ReactDOM.findDOMNode(this);
+    if(node instanceof HTMLElement) {
+      const selector = node.querySelector('.selector');
+      selector.value = this.props.book.shelf;
+      selector.addEventListener('change', event => (
+        this.props.onShelfChange(this.props.book, event.target.value)
+      ));
+    }
+  }
+  
+  componentWillUnmount() {
+    const node = ReactDOM.findDOMNode(this);
+    const selector = node.querySelector('.selector');
+    selector.removeEventListener('change', event => (
+        this.props.onShelfChange(this.props.book, event.target.value)
+      ));
+  }
+  
   render() {
     const book = this.props.book
-    const { imageLinks } = book;
     const smallThumbnail = book.imageLinks.smallThumbnail;
     const { title } = book;
     const authors = book.authors.join(', ');
@@ -13,9 +32,9 @@ class Book extends Component {
     return(
     	<div className="book">
         	<div className="book-top">
-         		<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${smallThumbnail})` }}></div>
+         		<div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${smallThumbnail})` }}>						</div>
 					<div className="book-shelf-changer">
-						<select>
+						<select className="selector">
 							<option value="move" disabled>Move to...</option>
                             <option value="currentlyReading">Currently Reading</option>
                             <option value="wantToRead">Want to Read</option>

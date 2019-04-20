@@ -7,8 +7,12 @@ class Shelf extends Component {
   render() {
     const shelfName = this.props.name;
     const books = this.props.books;
+    const updateBooks = this.props.updateBooks;
+    const onShelfChange = (book, shelf) => {
+      updateBooks(book, shelf);
+    }
     const booksInShelf = books.map((currentBook, key) => {
-      return (<li key={currentBook.id}> <Book book={currentBook} /> </li>);
+      return (<li key={currentBook.id}> <Book book={currentBook} onShelfChange={onShelfChange}/> </li>);
   	});
     
     return (
