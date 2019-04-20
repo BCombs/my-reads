@@ -22,6 +22,7 @@ class Search extends Component {
 
     const books = await search(event.target.value, 20).then(books => {
       if (Array.isArray(books)) {
+        // books is an array, if the length is 0 set foundBooks to an empty array, else, set foundBooks to the books array
         if (books.length == 0) {
           this.setState({ foundBooks: [] });
         } else {
@@ -29,6 +30,7 @@ class Search extends Component {
           console.log(this.state.foundBooks);
         }
       } else {
+        // Error object was returned or something else went wrong
         this.setState({ foundBooks: [] });
       }
     });
