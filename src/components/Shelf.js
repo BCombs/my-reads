@@ -4,13 +4,10 @@ import Book from './Book';
 
 const Shelf = props => {
   const { shelfName, books, updateBooks } = props;
-  const onShelfChange = (book, shelf) => {
-    updateBooks(book, shelf);
-  };
   const booksInShelf = books.map((currentBook, key) => {
     return (
       <li key={currentBook.id}>
-        <Book book={currentBook} onShelfChange={onShelfChange} />
+        <Book book={currentBook} onShelfChange={updateBooks} />
       </li>
     );
   });

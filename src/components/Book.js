@@ -48,9 +48,7 @@ class Book extends Component {
               height: 193,
               backgroundImage: `url(${thumbnail})`
             }}
-          >
-            {' '}
-          </div>
+          />
           <div className="book-shelf-changer">
             <select className="selector">
               <option value="move" disabled>
