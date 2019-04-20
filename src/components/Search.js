@@ -27,7 +27,6 @@ class Search extends Component {
           this.setState({ foundBooks: [] });
         } else {
           this.setState({ foundBooks: books });
-          console.log(this.state.foundBooks);
         }
       } else {
         // Error object was returned or something else went wrong
