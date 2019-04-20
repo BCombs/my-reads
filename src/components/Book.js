@@ -52,5 +52,6 @@ class Book extends Component {
 
 export default Book;
 Book.propTypes = {
-	book: PropTypes.object.isRequired
+	book: PropTypes.object.isRequired,
+	onShelfChange: PropTypes.func.isRequired
 }

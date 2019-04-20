@@ -32,5 +32,6 @@ export default Shelf;
 
 Shelf.propTypes = {
   name: PropTypes.string.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  updateBooks: PropTypes.func.isRequired
 }
