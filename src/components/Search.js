@@ -58,7 +58,7 @@ class Search extends Component {
   }
 
   render() {
-    const { onBackClick, updateBooks } = this.props;
+    const { updateBooks } = this.props;
     const { foundBooks } = this.state;
 
     const booksInShelf = foundBooks.map((currentBook, key) => {

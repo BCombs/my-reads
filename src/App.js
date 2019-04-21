@@ -77,12 +77,7 @@ class BooksApp extends React.Component {
         />
         <Route
           path="/search"
-          render={() => (
-            <Search
-              onBackClick={this.closeSearchPage}
-              updateBooks={this.updateBooks}
-            />
-          )}
+          render={() => <Search updateBooks={this.updateBooks} />}
         />
       </div>
     );
