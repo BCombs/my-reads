@@ -5,7 +5,7 @@ This React app lets users search for books and store them on virtual shelves. Th
 ![MyReads](http://www.billcombsdevelopment.com/img/my-reads.png)
 
 ## Installation
-* Clone this repo to a directory on your computer
+* clone this repo to a directory on your computer
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
 
