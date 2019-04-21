@@ -15,7 +15,6 @@ class BooksApp extends React.Component {
     };
 
     this.updateBooks = this.updateBooks.bind(this);
-    this.closeSearchPage = this.closeSearchPage.bind(this);
   }
 
   componentDidMount() {
