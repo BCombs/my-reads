@@ -13,4 +13,4 @@ This React app lets users search for books and store them on virtual shelves. Th
 ##### Shelves
 When the app starts you will be at your shelves. Each book has a selector in the bottom right corner. This allows you to change the shelf the book is currently on, or remove it by selecting `None`.
 ##### Searching
-To search books click the floating action button in the bottom right corner of the app. This will navigate to the search page. Begin typing your search in the search bar. Fetched books will be updated as you typed. You can move one of the books to your shelf by selecting the shelf you want in the selector.
+To search books click the floating action button in the bottom right corner of the app. This will navigate to the search page. Begin typing your search in the search bar. Fetched books will be updated as you type. You can move one of the books to your shelf by selecting the shelf you want in the selector.
