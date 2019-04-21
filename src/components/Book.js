@@ -5,11 +5,12 @@ import PropTypes from 'prop-types';
 class Book extends Component {
   componentDidMount() {
     const node = ReactDOM.findDOMNode(this);
+    const { updateBooks } = this.props;
     if (node instanceof HTMLElement) {
       const selector = node.querySelector('.selector');
       selector.value = this.props.book.shelf;
       selector.addEventListener('change', event =>
-        this.props.onShelfChange(this.props.book, event.target.value)
+        updateBooks(this.props.book, event.target.value)
       );
     }
   }
@@ -71,5 +72,5 @@ class Book extends Component {
 export default Book;
 Book.propTypes = {
   book: PropTypes.object.isRequired,
-  onShelfChange: PropTypes.func.isRequired
+  updateBooks: PropTypes.func.isRequired
 };

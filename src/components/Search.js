@@ -64,7 +64,7 @@ class Search extends Component {
     const booksInShelf = foundBooks.map((currentBook, key) => {
       return (
         <li key={currentBook.id}>
-          <Book book={currentBook} onShelfChange={updateBooks} />
+          <Book book={currentBook} updateBooks={updateBooks} />
         </li>
       );
     });

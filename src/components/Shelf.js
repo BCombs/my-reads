@@ -7,7 +7,7 @@ const Shelf = props => {
   const booksInShelf = books.map((currentBook, key) => {
     return (
       <li key={currentBook.id}>
-        <Book book={currentBook} onShelfChange={updateBooks} />
+        <Book book={currentBook} updateBooks={updateBooks} />
       </li>
     );
   });
