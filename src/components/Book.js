@@ -5,21 +5,22 @@ import PropTypes from 'prop-types';
 class Book extends Component {
   componentDidMount() {
     const node = ReactDOM.findDOMNode(this);
-    const { updateBooks } = this.props;
+    const { updateBooks, book } = this.props;
     if (node instanceof HTMLElement) {
       const selector = node.querySelector('.selector');
       selector.value = this.props.book.shelf;
       selector.addEventListener('change', event =>
-        updateBooks(this.props.book, event.target.value)
+        updateBooks(book, event.target.value)
       );
     }
   }
 
   componentWillUnmount() {
     const node = ReactDOM.findDOMNode(this);
+    const { updateBooks, book } = this.props;
     const selector = node.querySelector('.selector');
     selector.removeEventListener('change', event =>
-      this.props.onShelfChange(this.props.book, event.target.value)
+      updateBooks(book, event.target.value)
     );
   }
 
