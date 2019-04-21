@@ -2,6 +2,8 @@
 
 This React app lets users search for books and store them on virtual shelves. The shelves are Currently Reading, Want to Read, and Read. Books can be moved to different shelves.
 
+![MyReads](http://www.billcombsdevelopment.com/img/my-reads.png)
+
 ## Installation
 * Clone this repo to a directory on your computer
 * install all project dependencies with `npm install`
