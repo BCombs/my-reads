@@ -23,7 +23,7 @@ class Book extends Component {
   }
 
   render() {
-    const book = this.props.book;
+    const { book } = this.props;
     let thumbnail;
     if (book.imageLinks) {
       thumbnail = book.imageLinks.thumbnail;
