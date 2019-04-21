@@ -36,10 +36,6 @@ class BooksApp extends React.Component {
     }
   }
 
-  closeSearchPage() {
-    this.setState({ showSearchPage: false });
-  }
-
   render() {
     const { allBooks } = this.state;
     const currentlyReading = allBooks.filter(
